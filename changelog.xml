@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="a.borgatin">
+        <createTable tableName="Users">
+            <column name="id" type="Serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="Lastname" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Firstname" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="Lesson">
+            <column name="id" type="Serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="topic" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lesson_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="UserLesson">
+            <column name="id" type="Serial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_userlessons_users" references="Users(id)"/>
+            </column>
+            <column name="lesson_id" type="date">
+                <constraints nullable="false" foreignKeyName="fk_userlessons_lessons" references="Lesson(id)"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
